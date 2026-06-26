@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Fiza Afroj — Portfolio</title>
+<meta name="description" content="Portfolio of Fiza Afroj, CSE student at Daffodil International University, graduating July 2026."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #ffffff;
+    --bg-sec: #f7f7f5;
+    --bg-ter: #f0efec;
+    --text: #1a1a1a;
+    --text-sec: #555550;
+    --text-ter: #999990;
+    --border: rgba(0,0,0,0.1);
+    --border-med: rgba(0,0,0,0.18);
+    --accent: #3b4f8c;
+    --accent-light: #eef0f8;
+    --accent-text: #2a3a6e;
+    --radius: 10px;
+    --radius-lg: 14px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #131313;
+      --bg-sec: #1e1e1c;
+      --bg-ter: #272724;
+      --text: #f0eeea;
+      --text-sec: #a8a89e;
+      --text-ter: #666660;
+      --border: rgba(255,255,255,0.1);
+      --border-med: rgba(255,255,255,0.18);
+      --accent: #7b93d4;
+      --accent-light: #1e2235;
+      --accent-text: #a0b4e8;
+    }
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  /* ── Layout ── */
+  .wrapper { max-width: 760px; margin: 0 auto; padding: 0 1.5rem; }
+
+  /* ── Nav ── */
+  nav {
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    border-bottom: 0.5px solid var(--border);
+    z-index: 100;
+    padding: 0.75rem 0;
+  }
+  nav .wrapper { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+  .nav-name { font-size: 14px; font-weight: 500; color: var(--text); text-decoration: none; letter-spacing: 0.01em; }
+  .nav-links { display: flex; gap: 4px; flex-wrap: wrap; }
+  .nav-links a {
+    font-size: 13px;
+    color: var(--text-sec);
+    text-decoration: none;
+    padding: 4px 12px;
+    border-radius: var(--radius);
+    transition: background 0.15s, color 0.15s;
+  }
+  .nav-links a:hover { background: var(--bg-sec); color: var(--text); }
+
+  /* ── Hero ── */
+  .hero { padding: 5rem 0 3.5rem; }
+  .hero-inner { display: flex; align-items: flex-start; gap: 2rem; flex-wrap: wrap; }
+  .avatar {
+    width: 88px; height: 88px; border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--border-med);
+    flex-shrink: 0;
+  }
+  .hero-text { flex: 1; min-width: 200px; }
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 500;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+    color: var(--text);
+  }
+  .hero-tagline { font-size: 15px; color: var(--text-sec); margin-bottom: 1.25rem; line-height: 1.6; }
+  .hero-links { display: flex; flex-wrap: wrap; gap: 10px; }
+  .hero-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 13px; color: var(--text-sec);
+    text-decoration: none;
+    padding: 5px 12px;
+    border: 0.5px solid var(--border-med);
+    border-radius: var(--radius);
+    transition: border-color 0.15s, color 0.15s, background 0.15s;
+  }
+  .hero-link:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
+  .hero-link svg { width: 15px; height: 15px; flex-shrink: 0; }
+
+  /* ── Sections ── */
+  section { padding: 3.5rem 0; border-top: 0.5px solid var(--border); }
+  .section-label {
+    font-size: 11px; font-weight: 500; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--text-ter);
+    margin-bottom: 1.5rem;
+  }
+
+  /* ── About ── */
+  .about-body { font-size: 15px; color: var(--text-sec); line-height: 1.8; }
+  .about-body p + p { margin-top: 0.9rem; }
+  .stack-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 1.5rem; }
+  .tag {
+    font-size: 12px; padding: 4px 11px;
+    border-radius: var(--radius);
+    background: var(--bg-sec);
+    border: 0.5px solid var(--border);
+    color: var(--text-sec);
+  }
+  .tag-accent {
+    background: var(--accent-light);
+    border-color: var(--accent);
+    color: var(--accent-text);
+  }
+
+  /* ── Projects ── */
+  .project-grid { display: flex; flex-direction: column; gap: 12px; }
+  .proj-card {
+    background: var(--bg);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem 1.5rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .proj-card:hover { border-color: var(--border-med); }
+  .proj-card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap; }
+  .proj-title { font-size: 15px; font-weight: 500; color: var(--text); margin-bottom: 3px; }
+  .proj-date { font-size: 12px; color: var(--text-ter); white-space: nowrap; }
+  .proj-stack { font-size: 12px; color: var(--accent-text); margin-bottom: 8px; font-style: italic; }
+  .proj-desc { font-size: 14px; color: var(--text-sec); line-height: 1.65; }
+  .proj-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 12px; color: var(--accent);
+    text-decoration: none; margin-top: 10px;
+    transition: opacity 0.15s;
+  }
+  .proj-link:hover { opacity: 0.75; }
+  .proj-link svg { width: 13px; height: 13px; }
+
+  /* ── Skills ── */
+  .skill-groups { display: flex; flex-direction: column; gap: 1rem; }
+  .skill-row { display: flex; gap: 12px; flex-wrap: wrap; align-items: flex-start; }
+  .skill-key { font-size: 13px; font-weight: 500; color: var(--text-sec); min-width: 120px; padding-top: 4px; }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+
+  /* ── Education ── */
+  .edu-list { display: flex; flex-direction: column; gap: 12px; }
+  .edu-card {
+    background: var(--bg-sec);
+    border-radius: var(--radius-lg);
+    padding: 1.1rem 1.4rem;
+    border: 0.5px solid var(--border);
+  }
+  .edu-top { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 4px; }
+  .edu-deg { font-size: 15px; font-weight: 500; }
+  .edu-year { font-size: 13px; color: var(--text-ter); font-style: italic; }
+  .edu-inst { font-size: 13px; color: var(--text-sec); margin: 3px 0 8px; }
+  .edu-grade { font-size: 12px; font-weight: 500; color: var(--accent-text); background: var(--accent-light); padding: 2px 9px; border-radius: var(--radius); display: inline-block; margin-bottom: 8px; }
+
+  /* ── Contact ── */
+  .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+  .contact-card {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 1rem 1.25rem;
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--bg);
+    min-width: 0;
+  }
+  .contact-card > div { min-width: 0; flex: 1; }
+  .contact-icon { color: var(--text-ter); flex-shrink: 0; margin-top: 2px; }
+  .contact-icon svg { width: 18px; height: 18px; }
+  .contact-label { font-size: 11px; color: var(--text-ter); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 2px; }
+  .contact-val { font-size: 14px; color: var(--text); word-break: break-all; min-width: 0; }
+  .contact-val a { color: var(--accent); text-decoration: none; }
+  .contact-val a:hover { text-decoration: underline; }
+
+  .ref-card {
+    margin-top: 2rem; padding: 1.1rem 1.4rem;
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--bg-sec);
+  }
+  .ref-name { font-size: 15px; font-weight: 500; }
+  .ref-role { font-size: 13px; color: var(--text-sec); margin: 3px 0; }
+  .ref-email { font-size: 13px; }
+  .ref-email a { color: var(--accent); text-decoration: none; }
+
+  /* ── Footer ── */
+  footer {
+    border-top: 0.5px solid var(--border);
+    padding: 2rem 0;
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-ter);
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 500px) {
+    .hero-name { font-size: 28px; }
+    .skill-row { flex-direction: column; gap: 6px; }
+    .skill-key { min-width: unset; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+
+  /* ── Tab system ── */
+  .hero { display: none; }
+  .hero.active { display: block; }
+  section { display: none; border-top: none; }
+  section.active { display: block; padding-top: 3rem; }
+  header.hero { display: none; padding: 3rem 0 2rem; }
+  header.hero.active { display: block; }
+  .nav-links a.active {
+    background: var(--accent-light);
+    color: var(--accent-text);
+    font-weight: 500;
+  }
+</style>
+</head>
+<body>
+
+<nav aria-label="Site navigation">
+  <div class="wrapper">
+    <a href="#" class="nav-name">Fiza Afroj</a>
+    <div class="nav-links">
+      <a href="#" onclick="showTab('about');return false;">About</a>
+      <a href="#" onclick="showTab('projects');return false;">Projects</a>
+      <a href="#" onclick="showTab('skills');return false;">Skills</a>
+      <a href="#" onclick="showTab('education');return false;">Education</a>
+      <a href="#" onclick="showTab('contact');return false;">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <div class="wrapper">
+
+    <!-- Hero / About -->
+    <header class="hero active" id="about">
+      <div class="hero-inner">
+        <div style="position:relative;flex-shrink:0;">
+          <img
+            id="profile-photo"
+            src="https://avatars.githubusercontent.com/u/185474508?v=4"
+            alt="Fiza Afroj"
+            class="avatar"
+            width="88" height="88"
+          />
+          <label for="photo-upload" title="Change photo" style="position:absolute;bottom:0;right:0;width:24px;height:24px;border-radius:50%;background:var(--accent);border:2px solid var(--bg);display:flex;align-items:center;justify-content:center;cursor:pointer;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" width="12" height="12"><path d="M12 5v14M5 12h14"/></svg>
+          </label>
+          <input id="photo-upload" type="file" accept="image/*" style="display:none;" onchange="changePhoto(event)"/>
+        </div>
+        <div class="hero-text">
+          <h1 class="hero-name">Fiza Afroj</h1>
+          <p class="hero-tagline">
+            CSE student at Daffodil International University, graduating July 2026.<br>
+            Building things with Python, Flutter, ML, and IoT — based in Dhaka, Bangladesh.
+          </p>
+          <div class="hero-links">
+            <a href="https://github.com/fizaafroj" class="hero-link" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+              GitHub
+            </a>
+            <a href="https://www.linkedin.com/in/fizaafroj" class="hero-link" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              LinkedIn
+            </a>
+            <a href="mailto:afroz22205101311@diu.edu.bd" class="hero-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+              Email
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="about-body" style="margin-top:2rem;">
+        <p>I'm a final-year Computer Science and Engineering student with a strong interest in machine learning, full-stack development, IoT systems, and mobile applications. I enjoy building complete, working solutions — from training deep learning models on agricultural data to deploying IoT systems with real-time mobile dashboards.</p>
+        <p>I completed my A-Levels and IGCSE at Bangladesh International School in Jeddah, Saudi Arabia, before returning to Dhaka to pursue my CSE degree at Daffodil International University. I'm actively seeking an internship where I can contribute to real engineering problems and grow alongside experienced professionals.</p>
+      </div>
+      <div class="stack-row">
+        <span class="tag tag-accent">Python</span>
+        <span class="tag tag-accent">Flutter</span>
+        <span class="tag tag-accent">Machine Learning</span>
+        <span class="tag tag-accent">IoT / ESP32</span>
+        <span class="tag tag-accent">PHP</span>
+        <span class="tag tag-accent">MySQL</span>
+        <span class="tag tag-accent">Node.js</span>
+      </div>
+    </header>
+
+    <!-- Projects -->
+    <section id="projects">
+      <p class="section-label">Projects</p>
+      <div class="project-grid">
+
+        <article class="proj-card">
+          <div class="proj-card-top">
+            <div class="proj-title">Smart Home Temperature & Humidity Monitoring</div>
+            <span class="proj-date">Jan 2025 – Apr 2025</span>
+          </div>
+          <p class="proj-stack">IoT · ESP32 · Arduino UNO · DHT22 Sensor · Blynk Platform · C++</p>
+          <p class="proj-desc">Real-time IoT smart fan control system using ESP32 and DHT22 sensor with Blynk mobile platform integration, enabling automated and remote-controlled fan operation based on temperature thresholds over Wi-Fi.</p>
+        </article>
+
+        <article class="proj-card">
+          <div class="proj-card-top">
+            <div class="proj-title">Early Detection and Localization of Tomato Leaf Diseases</div>
+            <span class="proj-date">Sept 2024 – Dec 2024</span>
+          </div>
+          <p class="proj-stack">Python · TensorFlow · PyTorch · VGG19 · DenseNet201 · ConvNeXt V2 · OpenCV · CLAHE</p>
+          <p class="proj-desc">Deep learning framework classifying 10 tomato leaf disease categories; achieved 80.49% accuracy with VGG19 using CLAHE preprocessing and data augmentation. Also built custom lightweight CNN (TinyTomatoCNN) suitable for IoT and edge deployment.</p>
+          <a href="https://github.com/fizaafroj/tomato-leaf-disease-detection-and-localisation" class="proj-link" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+            View on GitHub
+          </a>
+        </article>
+
+        <article class="proj-card">
+          <div class="proj-card-top">
+            <div class="proj-title">Study Planner Mobile Application</div>
+            <span class="proj-date">Jan 2026 – Apr 2026</span>
+          </div>
+          <p class="proj-stack">Flutter · Dart · Node.js · Express.js · SQLite · REST API · Provider Pattern</p>
+          <p class="proj-desc">Cross-platform academic productivity app with task management, Pomodoro timer, grade tracking, and 20+ REST API endpoints with JWT authentication, local push notifications, and dark/light theme support.</p>
+          <a href="https://github.com/fizaafroj/study-planner-app" class="proj-link" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+            View on GitHub
+          </a>
+        </article>
+
+        <article class="proj-card">
+          <div class="proj-card-top">
+            <div class="proj-title">DIU Smart Portal — Attendance Management System</div>
+            <span class="proj-date">Sep 2025 – Dec 2025</span>
+          </div>
+          <p class="proj-stack">PHP (OOP) · MySQL · JavaScript · face-api.js · HTML/CSS · Bootstrap · XAMPP</p>
+          <p class="proj-desc">Full-stack academic web portal with role-based access for admins, teachers, and students. Features camera-based face recognition attendance, course management, messaging, and real-time admin dashboards.</p>
+        </article>
+
+        <article class="proj-card">
+          <div class="proj-card-top">
+            <div class="proj-title">Machine Learning Rent Prediction — Dhaka</div>
+            <span class="proj-date"></span>
+          </div>
+          <p class="proj-stack">Python · Scikit-learn · Pandas · Jupyter Notebook</p>
+          <p class="proj-desc">Predicted rental prices across different areas of Dhaka using collected CSV data and machine learning regression models.</p>
+          <a href="https://github.com/fizaafroj/machine-learning-rent-prediction" class="proj-link" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+            View on GitHub
+          </a>
+        </article>
+
+        <article class="proj-card">
+          <div class="proj-card-top">
+            <div class="proj-title">Compiler Design Project</div>
+            <span class="proj-date"></span>
+          </div>
+          <p class="proj-stack">C</p>
+          <p class="proj-desc">Custom-built compiler implemented in C, covering lexical analysis, parsing, and code generation stages.</p>
+          <a href="https://github.com/fizaafroj/compiler-design-project" class="proj-link" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+            View on GitHub
+          </a>
+        </article>
+
+        <article class="proj-card">
+          <div class="proj-card-top">
+            <div class="proj-title">Student Management System</div>
+            <span class="proj-date">Jul 2024 – Dec 2024</span>
+          </div>
+          <p class="proj-stack">Python · MySQL · PHP · XAMPP · HTML/CSS</p>
+          <p class="proj-desc">Centralized student records system with full CRUD operations, relational database schema, and a web-based interface for non-technical administrative users.</p>
+          <a href="https://github.com/fizaafroj/student-management-system" class="proj-link" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+            View on GitHub
+          </a>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills">
+      <p class="section-label">Skills</p>
+      <div class="skill-groups">
+        <div class="skill-row">
+          <span class="skill-key">Languages</span>
+          <div class="skill-tags"><span class="tag">Python</span><span class="tag">C</span><span class="tag">JavaScript</span><span class="tag">PHP</span><span class="tag">Dart</span><span class="tag">SQL</span></div>
+        </div>
+        <div class="skill-row">
+          <span class="skill-key">AI / ML</span>
+          <div class="skill-tags"><span class="tag">TensorFlow</span><span class="tag">PyTorch</span><span class="tag">Scikit-learn</span><span class="tag">OpenCV</span><span class="tag">Pandas</span><span class="tag">NumPy</span><span class="tag">Matplotlib</span></div>
+        </div>
+        <div class="skill-row">
+          <span class="skill-key">Web & backend</span>
+          <div class="skill-tags"><span class="tag">HTML/CSS</span><span class="tag">REST APIs</span><span class="tag">PHP (OOP)</span><span class="tag">Node.js</span><span class="tag">Express.js</span></div>
+        </div>
+        <div class="skill-row">
+          <span class="skill-key">Mobile</span>
+          <div class="skill-tags"><span class="tag">Flutter</span><span class="tag">Dart</span><span class="tag">Provider Pattern</span></div>
+        </div>
+        <div class="skill-row">
+          <span class="skill-key">Databases</span>
+          <div class="skill-tags"><span class="tag">MySQL</span><span class="tag">SQLite</span><span class="tag">XAMPP</span></div>
+        </div>
+        <div class="skill-row">
+          <span class="skill-key">IoT & hardware</span>
+          <div class="skill-tags"><span class="tag">Arduino UNO</span><span class="tag">ESP32</span><span class="tag">DHT22 Sensor</span><span class="tag">Blynk IoT</span></div>
+        </div>
+        <div class="skill-row">
+          <span class="skill-key">Tools</span>
+          <div class="skill-tags"><span class="tag">Git</span><span class="tag">GitHub</span><span class="tag">VS Code</span><span class="tag">Linux (Ubuntu)</span><span class="tag">Postman</span><span class="tag">Arduino IDE</span></div>
+        </div>
+        <div class="skill-row">
+          <span class="skill-key">Certifications</span>
+          <div class="skill-tags"><span class="tag">Linux Commands & Shell Scripting — IBM (2025)</span><span class="tag">Networking Fundamentals — Akamai (2025)</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section id="education">
+      <p class="section-label">Education</p>
+      <div class="edu-list">
+
+        <div class="edu-card">
+          <div class="edu-top">
+            <span class="edu-deg">B.Sc. in Computer Science and Engineering</span>
+            <span class="edu-year">Expected July 2026</span>
+          </div>
+          <p class="edu-inst">Daffodil International University — Dhaka, Bangladesh</p>
+          <div class="stack-row" style="margin-top:0">
+            <span class="tag">Algorithms & Data Structures</span><span class="tag">Artificial Intelligence</span><span class="tag">Machine Learning</span><span class="tag">Database Systems</span><span class="tag">Computer Networks</span><span class="tag">Software Engineering</span>
+          </div>
+        </div>
+
+        <div class="edu-card">
+          <div class="edu-top">
+            <span class="edu-deg">A-Levels</span>
+            <span class="edu-year">2021</span>
+          </div>
+          <p class="edu-inst">Bangladesh International School, English Section — Jeddah, Saudi Arabia</p>
+          <span class="edu-grade">2As, 1B</span>
+          <div class="stack-row" style="margin-top:0"><span class="tag">Mathematics</span><span class="tag">Physics</span><span class="tag">ICT</span></div>
+        </div>
+
+        <div class="edu-card">
+          <div class="edu-top">
+            <span class="edu-deg">IGCSE</span>
+            <span class="edu-year">2019</span>
+          </div>
+          <p class="edu-inst">Bangladesh International School, English Section — Jeddah, Saudi Arabia</p>
+          <span class="edu-grade">5As, 1B</span>
+          <div class="stack-row" style="margin-top:0"><span class="tag">Mathematics</span><span class="tag">English</span><span class="tag">ICT</span><span class="tag">Physics</span><span class="tag">Biology</span><span class="tag">Accounting</span></div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <p class="section-label">Contact</p>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <span class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg></span>
+          <div><div class="contact-label">Email</div><div class="contact-val"><a href="mailto:afroz22205101311@diu.edu.bd">afroz22205101311@diu.edu.bd</a></div></div>
+        </div>
+        <div class="contact-card">
+          <span class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.72A2 2 0 012.18 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.15a16 16 0 006.94 6.94l1.42-1.42a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></span>
+          <div><div class="contact-label">Phone</div><div class="contact-val">+880-1618505591</div></div>
+        </div>
+        <div class="contact-card">
+          <span class="contact-icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg></span>
+          <div><div class="contact-label">GitHub</div><div class="contact-val"><a href="https://github.com/fizaafroj" target="_blank" rel="noopener">github.com/fizaafroj</a></div></div>
+        </div>
+        <div class="contact-card">
+          <span class="contact-icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></span>
+          <div><div class="contact-label">LinkedIn</div><div class="contact-val"><a href="https://www.linkedin.com/in/fizaafroj" target="_blank" rel="noopener">linkedin.com/in/fizaafroj</a></div></div>
+        </div>
+      </div>
+
+      <div class="ref-card">
+        <div class="section-label" style="margin-bottom:0.75rem">Academic reference</div>
+        <div class="ref-name">Ms. Fahiba Farhin</div>
+        <div class="ref-role">Assistant Professor, Dept. of CSE — Daffodil International University</div>
+        <div class="ref-email"><a href="mailto:fahibafarhin.cse@diu.edu.bd">fahibafarhin.cse@diu.edu.bd</a> &nbsp;·&nbsp; +880-1997969102</div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrapper">
+    &copy; 2026 Fiza Afroj &nbsp;·&nbsp; Dhaka, Bangladesh
+  </div>
+</footer>
+
+<script>
+function showTab(id) {
+  document.querySelectorAll('section, header.hero').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  var target = document.getElementById(id);
+  if (target) target.classList.add('active');
+  var link = document.querySelector('.nav-links a[onclick*="' + id + '"]');
+  if (link) link.classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+function changePhoto(event) {
+  var file = event.target.files[0];
+  if (!file) return;
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    document.getElementById('profile-photo').src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+showTab('about');
+</script>
+</body>
+</html>
